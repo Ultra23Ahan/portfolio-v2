@@ -1,4 +1,4 @@
-import { clsx } from "clsx";
+import { clsx } from 'clsx';
 type TechBadgeProps = {
   techName: string;
   techSubtitle: string;
@@ -14,8 +14,8 @@ function TechBadge({
 }: TechBadgeProps) {
   const islongSubtitle = techSubtitle.length > 30;
   const cardParentClassName = clsx(
-    "select-none hover:border-[#3e3e3e] gap-5 flex rounded-xl border-2 border-[#2a2a2a] bg-[#1f1f1f] p-2.5 transition-all duration-200 hover:bg-[#2a2a2a]",
-    islongSubtitle ? "max-w-max" : "w-[17.875rem]",
+    'select-none hover:border-[#3e3e3e] gap-5 flex rounded-xl border-2 border-[#2a2a2a] bg-[#1f1f1f] p-2.5 transition-all duration-200 hover:bg-[#2a2a2a]',
+    islongSubtitle ? 'max-w-max' : 'w-[17.875rem]',
   );
   return (
     <div className={cardParentClassName}>
