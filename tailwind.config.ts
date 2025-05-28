@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./app/**/*.{js,ts,jsx,tsx}'],
+  safelist: ['animate-fade-in-out', 'animate-stopscroll'],
   theme: {
     extend: {
       keyframes: {
@@ -7,16 +7,16 @@ module.exports = {
           '0%': { opacity: '0' },
           '20%': { opacity: '1' },
           '60%': { opacity: '1' },
-          '100%': { opacity: '0', display: 'none' },
+          '100%': { opacity: '0' },
         },
-        'collapse-space': {
-          '0%': { marginTop: '100vh' },
-          '100%': { marginTop: '0', height: '0' },
+        'stopscroll': {
+          '0%, 90%': { overflow: 'hidden' },
+          '100%': { overflow: 'auto' },
         },
       },
       animation: {
         'fade-in-out': 'fade-in-out 3s forwards',
-        'collapse-space': 'collapse-space 3s forwards',
+        'stopscroll': 'stopscroll 3.5s forwards',
       },
     },
   },
