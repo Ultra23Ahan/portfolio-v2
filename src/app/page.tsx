@@ -2,16 +2,41 @@
 import { ProjectCard } from '@/components/ui/project-card';
 import { TechBadge } from '@/components/ui/tech-badge';
 import Image from 'next/image';
-import { useEffect } from 'react';
-import {
-  Navbar,
-  NavBody,
-  NavItems,
-  NavbarLogo,
-  NavbarButton,
-} from '@/components/ui/resizable-navbar';
+import { useEffect, useState } from 'react';
+import { Navbar, NavBody, NavItems } from '@/components/ui/resizable-navbar';
+import { motion } from 'motion/react';
 
 export default function Home() {
+  const arrowShowTime: number = 7500;
+  const [showArrow, setShowArrow] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line prefer-const
+    let timeoutId: NodeJS.Timeout;
+    let hasScrolled = false;
+
+    function handleScroll() {
+      if (!hasScrolled) {
+        setShowArrow(false);
+        hasScrolled = true;
+        clearTimeout(timeoutId);
+        window.removeEventListener('scroll', handleScroll);
+      }
+    }
+
+    timeoutId = setTimeout(() => {
+      if (!hasScrolled) {
+        setShowArrow(true);
+      }
+    }, arrowShowTime);
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   const navItems = [
     {
       name: 'About',
@@ -30,15 +55,10 @@ export default function Home() {
       link: '#contact',
     },
   ];
-  function removeAnimationElement() {
-    document.querySelector('[data-remove="hithere-animation"]')?.remove();
-    document.querySelector('[data-remove=\"hide\"]').classList.remove('hidden');
-  }
-
-  function finishAnimation() {
-    document.body.classList.remove('overflow-hidden');
-    removeAnimationElement();
-  }
+  //   function removeAnimationElement() {
+  //     document.querySelector('[data-remove="hithere-animation"]')?.remove();
+  //     document.querySelector('[data-remove=\"hide\"]').classList.remove('hidden');
+  //   }
   useEffect(() => {
     document.body.classList.add('overflow-hidden');
 
@@ -65,7 +85,6 @@ export default function Home() {
           </NavBody>
         </Navbar>
       </div>
-      {/*hello animation part*/}
       <div
         className="grid h-screen place-items-center bg-black"
         data-remove="hithere-animation"
@@ -77,25 +96,32 @@ export default function Home() {
         className="flex h-screen w-screen flex-col items-center justify-center"
         id="about"
       >
-        <div className="align-center flex flex-col items-center justify-center">
-          <div className="text-center text-xl">Front-End Developer</div>
-          <div className="text-9xl">
-            I'm<span className="text-blue-500">&nbsp;Ahan Das.</span>
-          </div>
-          <div className="flex h-fit w-[35vw] flex-row justify-between">
-            <p className="text-xl">
-              Located in&nbsp;
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=Bangalore,+India"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#ef82c1] no-underline"
-              >
-                Bangalore, India
-              </a>
-            </p>
-            <p className="text-xl text-green-400">13 years old</p>
-          </div>
+        <Image
+          src="/special/pfp.png"
+          width="64"
+          alt="My profile picture"
+          height="64"
+          className="m-5 rounded-full"
+        />
+        <div className="text-center text-xl">Front-End Developer</div>
+        <div className="text-9xl">
+          I&apos;m<span className="text-blue-500"> Ahan Das.</span>
+        </div>
+        <p className="m-2 text-xl font-semibold"> Based in Bangalore, India</p>
+        <div className="absolute bottom-8 flex flex-col items-center justify-center">
+          <motion.img
+            className={`fixed bottom-8 left-1/2 h-24 w-24 -translate-x-1/2 transition-opacity duration-500 ${showArrow ? 'opacity-100' : 'opacity-0'}`}
+            src="/special/down-arrow.svg"
+            animate={{
+              y: [0, -30, 0, -15, 0, -30, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: 'loop',
+              ease: 'easeOut',
+            }}
+          />
         </div>
       </main>
       {/*technologies part*/}
@@ -216,7 +242,7 @@ export default function Home() {
         />
         <ProjectCard
           projectName="InstaMacro"
-          projectDescription="A website where people can contact me for making macros for them(using python) to automate repetitive tasks.(Business idea)"
+          projectDescription="A website where people can contact me for making macros for them using python to automate repetitive tasks.(Business idea)"
           projectImageSrc="/project_photos/InstaMacro.png"
           projectLink="https://insta-macro.vercel.app"
           githubLink="https://github.com/Ultra23Ahan/InstaMacro/"
@@ -229,9 +255,10 @@ export default function Home() {
       >
         <div className="flex justify-between">
           <h2 className="m-0 text-2xl">
-            Let's Collaborate!
+            Let&apos;s Collaborate!
             <br />
-            My email:{' '}
+            My email:
+            <br />
             <a href="mailto:ahandas234@gmail.com" className="no-underline">
               → <span className="text-green-500">click here</span> ←
             </a>

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 type ProjectCardProps = {
   projectName: string;
   projectDescription: string;
@@ -17,10 +18,12 @@ function ProjectCard({
 }: ProjectCardProps) {
   return (
     <div className="flex h-[36rem] w-[30rem] flex-grow flex-col rounded-lg border border-white bg-[#1f1f1f] px-[1.4rem] text-white">
-      <img
-        className="h-64 w-md rounded-[5px] pt-8 select-none"
+      <Image
+        className="rounded-[5px] pt-8 select-none"
         src={projectImageSrc}
         alt={`Image of ${projectName}`}
+        height="256"
+        width="448"
       />
       <h3 className="my-4 text-2xl font-semibold text-white">{projectName}</h3>
       <div className="flex flex-grow">
@@ -31,12 +34,24 @@ function ProjectCard({
         <div className="mt-12 mb-0 flex w-32 justify-between pb-0 select-none">
           <a href={githubLink} target="_blank">
             <div className="flex h-fit w-fit items-center rounded-xl border-[3px] border-[#3e3e3e] p-2.5 transition-colors duration-200 select-none hover:border-[#525252] hover:bg-[#3e3e3e]">
-              <img className="w-8 select-none" src="/logos/github.svg" />
+              <Image
+                className="select-none"
+                src="/logos/github.svg"
+                width="32"
+                height="32"
+                alt="Github Link"
+              />
             </div>
           </a>
           <a href={projectLink} target="_blank">
             <div className="flex w-fit items-center rounded-xl border-[3px] border-[#3e3e3e] p-2.5 transition-colors duration-200 select-none hover:border-[#525252] hover:bg-[#3e3e3e]">
-              <img className="w-8 select-none" src="/logos/external-link.svg" />
+              <Image
+                className="select-none"
+                src="/logos/external-link.svg"
+                height="32"
+                width="32"
+                alt="External Link"
+              />
             </div>
           </a>
         </div>

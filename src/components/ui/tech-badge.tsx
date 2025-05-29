@@ -36,8 +36,8 @@ function TechBadge({
           className="rounded-sm select-none"
           src={techIconSrc}
           alt={`${techName} logo`}
-          height={32}
-          width={32}
+          height="32"
+          width="32"
         />
       </div>
       <div className="flex flex-col justify-center gap-1">
