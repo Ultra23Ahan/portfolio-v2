@@ -248,6 +248,29 @@ export default function Home() {
           githubLink="https://github.com/Ultra23Ahan/InstaMacro/"
           techstacks={['HTML', 'CSS', 'JS']}
         />
+        <ProjectCard
+          projectName="Word Numberizer"
+          projectDescription='A word numberizer that converts normal speech to "Leet Speak"'
+          projectLink="https://word-numberizer.vercel.app"
+          githubLink="https://github.com/Ultra23Ahan/word-numberizer"
+          techstacks={['Next.js', 'React', 'TS']}
+          projectImageSrc="/project_photos/Word Numberizer.png"
+        />
+        <ProjectCard
+          projectName="Music Player UI"
+          projectDescription="A simple Apple-inspired music player UI"
+          projectLink="https://music-player-ui-ultra23ahans-projects.vercel.app/"
+          githubLink="https://github.com/Ultra23Ahan/music-player-ui"
+          techstacks={['Next.js', 'React', 'TS']}
+          projectImageSrc="/project_photos/Music Player UI.png"
+        />
+        <ProjectCard 
+        projectName='CSS Styles to JS Converter'
+        projectDescription='A simple converter that converts CSS styles to JS style declarations'
+        projectLink='https://css-styles-to-js.vercel.app/'
+        githubLink='https://github.com/Ultra23Ahan/css-styles-to-js'
+        techstacks={['Next.js', 'React', 'TS']}
+        projectImageSrc='/project_photos/CSS Styles To JS Converter.png' />
       </div>
       <footer
         className="mt-18 flex h-fit flex-col bg-[#444] p-[1.25rem] text-white"

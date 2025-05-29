@@ -11,13 +11,13 @@ type ProjectCardProps = {
 function ProjectCard({
   projectName = 'Project Name',
   projectDescription = 'Project Description here',
-  projectImageSrc = 'https://picsum.photos/1600/900',
+  projectImageSrc = '/logos/html.svg',
   githubLink = '#',
   projectLink = '#',
   techstacks = ['enter', 'techstacks', 'here'],
 }: ProjectCardProps) {
   return (
-    <div className="flex h-[36rem] w-[30rem] flex-grow flex-col rounded-lg border border-white bg-[#1f1f1f] px-[1.4rem] text-white">
+    <div className="flex h-[36rem] w-[30rem] flex-col rounded-lg border border-white bg-[#1f1f1f] px-[1.4rem] text-white">
       <Image
         className="rounded-[5px] pt-8 select-none"
         src={projectImageSrc}
@@ -29,7 +29,7 @@ function ProjectCard({
       <div className="flex flex-grow">
         <p className="text-[16px]">{projectDescription}</p>
       </div>
-      <div className="mt-auto mb-7 flex w-[90%] items-end justify-between gap-5">
+      <div className="mt-auto mb-7 flex w-full items-end justify-between gap-5">
         {/* projectinfocontainer */}
         <div className="mt-12 mb-0 flex w-32 justify-between pb-0 select-none">
           <a href={githubLink} target="_blank">
@@ -55,7 +55,7 @@ function ProjectCard({
             </div>
           </a>
         </div>
-        <div className="flex h-fit w-fit gap-[0.2rem]">
+        <div className="flex h-fit w-fit gap-[0.1rem]">
           {techstacks.map((stack, index) => (
             <p
               key={index}
