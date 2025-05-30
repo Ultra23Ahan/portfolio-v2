@@ -2,7 +2,7 @@
 import { ProjectCard } from '@/components/ui/project-card';
 import { TechBadge } from '@/components/ui/tech-badge';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Navbar, NavBody, NavItems } from '@/components/ui/resizable-navbar';
 import { motion } from 'motion/react';
 import { WavyBackground } from '@/components/ui/wavy-background';
@@ -23,7 +23,7 @@ export default function Home() {
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  });
   const navItems = [
     {
       name: 'About',
@@ -61,7 +61,7 @@ export default function Home() {
         <h1 className="animate-fade-in-out z-40 text-6xl text-white">Hello!</h1>
       </div>
       {/*my intro part*/}
-      <WavyBackground backgroundFill="transparent" speed='veryfast'>
+      <WavyBackground backgroundFill="transparent" speed="veryfast">
         <main
           className="flex h-screen w-screen flex-col items-center justify-center"
           id="about"
