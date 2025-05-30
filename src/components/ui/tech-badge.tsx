@@ -9,10 +9,10 @@ type TechBadgeProps = {
 };
 
 function TechBadge({
-  techName = "Enter name",
-  techSubtitle = "A thingy",
-  techIconSrc = "/logos/external-link.svg",
-  techBgColor = "rgba(69, 69 ,69, 0.6)",
+  techName = 'A thingy',
+  techSubtitle = 'A thingy',
+  techIconSrc = '/logos/external-link.svg',
+  techBgColor = 'rgba(69, 69 ,69, 0.6)',
 }: TechBadgeProps) {
   const isLongSubtitle = techSubtitle?.length > 25;
   const cardParentClassName = clsx(
@@ -29,7 +29,7 @@ function TechBadge({
   return (
     <div className={cardParentClassName}>
       <div
-        className="h-14 w-14 overflow-hidden rounded-md p-3 flex items-center justify-center"
+        className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-md p-3"
         style={iconBgStyle}
       >
         <Image
@@ -41,7 +41,9 @@ function TechBadge({
         />
       </div>
       <div className="flex flex-col justify-center gap-1">
-        <h4 className="m-0 text-[1.125rem] font-medium text-white">{techName}</h4>
+        <h4 className="m-0 text-[1.125rem] font-medium text-white">
+          {techName}
+        </h4>
         <p className="m-0 justify-self-center px-1 text-[0.875rem] text-white/70">
           {techSubtitle}
         </p>

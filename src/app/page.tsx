@@ -194,6 +194,9 @@ export default function Home() {
             techIconSrc="/logos/react.svg"
             techBgColor="rgba(130, 215, 247, 0.3)"
           />
+          <TechBadge techName="Go" techSubtitle="A programming language" 
+          techIconSrc='/logos/go.svg'
+          techBgColor='rgba(77, 169, 211, 0.3)'/>
         </div>
       </div>
       {/* projects part */}
