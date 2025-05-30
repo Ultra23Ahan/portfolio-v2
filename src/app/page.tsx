@@ -5,36 +5,23 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Navbar, NavBody, NavItems } from '@/components/ui/resizable-navbar';
 import { motion } from 'motion/react';
-
+import { WavyBackground } from '@/components/ui/wavy-background';
 export default function Home() {
-  const arrowShowTime: number = 7500;
-  const [showArrow, setShowArrow] = useState(false);
-
   useEffect(() => {
-    // eslint-disable-next-line prefer-const
-    let timeoutId: NodeJS.Timeout;
-    let hasScrolled = false;
+    document.body.classList.add('overflow-hidden');
 
-    function handleScroll() {
-      if (!hasScrolled) {
-        setShowArrow(false);
-        hasScrolled = true;
-        clearTimeout(timeoutId);
-        window.removeEventListener('scroll', handleScroll);
-      }
-    }
+    const nav = document.querySelector('[data-remove="hide"]');
+    nav?.classList.add('hidden');
+    window.scrollBy(0, -100000000000);
 
-    timeoutId = setTimeout(() => {
-      if (!hasScrolled) {
-        setShowArrow(true);
-      }
-    }, arrowShowTime);
-
-    window.addEventListener('scroll', handleScroll);
+    const timer = setTimeout(() => {
+      document.body.classList.remove('overflow-hidden');
+      document.querySelector('[data-remove="hithere-animation"]')?.remove();
+      nav?.classList.remove('hidden');
+    }, 3500);
 
     return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
     };
   }, []);
   const navItems = [
@@ -55,24 +42,6 @@ export default function Home() {
       link: '#contact',
     },
   ];
-  //   function removeAnimationElement() {
-  //     document.querySelector('[data-remove="hithere-animation"]')?.remove();
-  //     document.querySelector('[data-remove=\"hide\"]').classList.remove('hidden');
-  //   }
-  useEffect(() => {
-    document.body.classList.add('overflow-hidden');
-
-    const nav = document.querySelector('[data-remove="hide"]');
-    nav?.classList.add('hidden');
-
-    const timer = setTimeout(() => {
-      document.body.classList.remove('overflow-hidden');
-      document.querySelector('[data-remove="hithere-animation"]')?.remove();
-      nav?.classList.remove('hidden');
-    }, 3500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>
@@ -86,49 +55,50 @@ export default function Home() {
         </Navbar>
       </div>
       <div
-        className="grid h-screen place-items-center bg-black"
+        className="grid h-screen place-items-center bg-transparent"
         data-remove="hithere-animation"
       >
-        <h1 className="animate-fade-in-out text-6xl text-white">Hello!</h1>
+        <h1 className="animate-fade-in-out z-40 text-6xl text-white">Hello!</h1>
       </div>
       {/*my intro part*/}
-      <main
-        className="flex h-screen w-screen flex-col items-center justify-center"
-        id="about"
-      >
-        <Image
-          src="/special/pfp.png"
-          width="64"
-          alt="My profile picture"
-          height="64"
-          className="m-5 rounded-full"
-        />
-        <div className="text-center text-xl">Front-End Developer</div>
-        <div className="text-9xl">
-          I&apos;m<span className="text-blue-500"> Ahan Das.</span>
-        </div>
-        <p className="m-2 text-xl font-semibold"> Based in Bangalore, India</p>
-        <div className="absolute bottom-8 flex flex-col items-center justify-center">
-          <motion.img
-            className={`fixed bottom-8 left-1/2 h-24 w-24 -translate-x-1/2 transition-opacity duration-500 ${showArrow ? 'opacity-100' : 'opacity-0'}`}
-            src="/special/down-arrow.svg"
-            animate={{
-              y: [0, -30, 0, -15, 0, -30, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: 'loop',
-              ease: 'easeOut',
-            }}
-          />
-        </div>
-      </main>
+      <WavyBackground backgroundFill="transparent" speed='veryfast'>
+        <main
+          className="flex h-screen w-screen flex-col items-center justify-center"
+          id="about"
+        >
+          &nbsp;
+          <motion.span
+            className="z-10 flex flex-col items-center justify-center"
+            initial={{ opacity: 0, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: [200, 0], filter: 'blur(0px)' }}
+            transition={{ duration: 5.5, ease: [1, 0, 0.36, 1.28] }}
+          >
+            <Image
+              src="/special/pfp.png"
+              width="64"
+              alt="My profile picture"
+              height="64"
+              className="m-5 rounded-full"
+              loading="eager"
+              quality={100}
+              priority={true}
+            />
+            <div className="text-center text-xl">Front-End Developer</div>
+            <div className="sm:text-4xl md:text-6xl lg:text-9xl">
+              I&apos;m<span className="text-blue-500"> Ahan Das.</span>
+            </div>
+            <p className="m-2 text-xl font-semibold">
+              &nbsp; Based in Bangalore, India
+            </p>
+          </motion.span>
+        </main>
+      </WavyBackground>
       {/*technologies part*/}
-      <div className="h-16" id="technologies"></div>
       <div className="my-[14rem] h-fit w-screen px-24">
         {/* TechBadge components go here */}
-        <p className="my-6 text-3xl">Technologies i know:</p>
+        <p className="my-6 text-3xl" id="technologies">
+          Technologies i know:
+        </p>
         <div className="flex h-fit w-fit flex-row flex-wrap gap-4">
           <TechBadge
             techName="Semantic HTML"
@@ -154,7 +124,6 @@ export default function Home() {
             techIconSrc="/logos/git.svg"
             techBgColor="rgba(221, 76, 58, 0.3)"
           />
-          <br />
           <TechBadge
             techName="Tailwind"
             techSubtitle="CSS but better & faster"
@@ -264,13 +233,14 @@ export default function Home() {
           techstacks={['Next.js', 'React', 'TS']}
           projectImageSrc="/project_photos/Music Player UI.png"
         />
-        <ProjectCard 
-        projectName='CSS Styles to JS Converter'
-        projectDescription='A simple converter that converts CSS styles to JS style declarations'
-        projectLink='https://css-styles-to-js.vercel.app/'
-        githubLink='https://github.com/Ultra23Ahan/css-styles-to-js'
-        techstacks={['Next.js', 'React', 'TS']}
-        projectImageSrc='/project_photos/CSS Styles To JS Converter.png' />
+        <ProjectCard
+          projectName="CSS Styles to JS Converter"
+          projectDescription="A simple converter that converts CSS styles to JS style declarations"
+          projectLink="https://css-styles-to-js.vercel.app/"
+          githubLink="https://github.com/Ultra23Ahan/css-styles-to-js"
+          techstacks={['Next.js', 'React', 'TS']}
+          projectImageSrc="/project_photos/CSS Styles To JS Converter.png"
+        />
       </div>
       <footer
         className="mt-18 flex h-fit flex-col bg-[#444] p-[1.25rem] text-white"

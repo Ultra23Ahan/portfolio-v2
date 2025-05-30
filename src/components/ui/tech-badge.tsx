@@ -33,7 +33,7 @@ function TechBadge({
         style={iconBgStyle}
       >
         <Image
-          className="rounded-sm select-none"
+          className="rounded-xs select-none"
           src={techIconSrc}
           alt={`${techName} logo`}
           height="32"
