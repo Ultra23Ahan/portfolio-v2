@@ -7,6 +7,7 @@ import { Navbar, NavBody, NavItems } from '@/components/ui/resizable-navbar';
 import { motion } from 'motion/react';
 import { WavyBackground } from '@/components/ui/wavy-background';
 import { Meteors } from '@/components/ui/meteors';
+import { cn } from '@/lib/utils';
 export default function Home() {
   useEffect(() => {
     document.body.classList.add('overflow-hidden');
@@ -47,7 +48,7 @@ export default function Home() {
   return (
     <>
       <div data-remove="hide">
-        <Navbar>
+        <Navbar className='select-none'>
           <NavBody>
             <div className="flex h-8 items-center gap-4">
               <NavItems items={navItems} />
@@ -67,7 +68,6 @@ export default function Home() {
           className="flex h-screen w-screen flex-col items-center justify-center"
           id="about"
         >
-          &nbsp;
           <motion.span
             className="z-10 flex flex-col items-center justify-center"
             initial={{ opacity: 0, filter: 'blur(10px)' }}
@@ -79,12 +79,13 @@ export default function Home() {
               width="64"
               alt="My profile picture"
               height="64"
-              className="m-5 rounded-full"
+              className="m-5 rounded-full select-none"
               loading="eager"
               quality={100}
               priority={true}
+
             />
-            <div className="text-center text-xl">Front-End Developer</div>
+            <div className="text-center text-xl z-10">Front-End Developer</div>
             <div className="sm:text-4xl md:text-6xl lg:text-9xl">
               I&apos;m<span className="text-blue-500"> Ahan Das.</span>
             </div>
