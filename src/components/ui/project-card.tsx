@@ -55,7 +55,7 @@ function ProjectCard({
             </div>
           </a>
         </div>
-        <div className="flex h-fit w-fit gap-[0.1rem]">
+        <div className="flex h-fit w-fit gap-1">
           {techstacks.map((stack, index) => (
             <p
               key={index}

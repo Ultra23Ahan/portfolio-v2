@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Navbar, NavBody, NavItems } from '@/components/ui/resizable-navbar';
 import { motion } from 'motion/react';
 import { WavyBackground } from '@/components/ui/wavy-background';
+import { Meteors } from '@/components/ui/meteors';
 export default function Home() {
   useEffect(() => {
     document.body.classList.add('overflow-hidden');
@@ -61,7 +62,7 @@ export default function Home() {
         <h1 className="animate-fade-in-out z-40 text-6xl text-white">Hello!</h1>
       </div>
       {/*my intro part*/}
-      <WavyBackground backgroundFill="transparent" speed="veryfast">
+      <WavyBackground backgroundFill="transparent" speed="fast">
         <main
           className="flex h-screen w-screen flex-col items-center justify-center"
           id="about"
@@ -93,12 +94,11 @@ export default function Home() {
           </motion.span>
         </main>
       </WavyBackground>
+      <Meteors number={200 / 2} />
+      <div id="technologies" className="h-16"></div>
       {/*technologies part*/}
       <div className="my-[14rem] h-fit w-screen px-24">
-        {/* TechBadge components go here */}
-        <p className="my-6 text-3xl" id="technologies">
-          Technologies i know:
-        </p>
+        <p className="my-6 text-3xl">Technologies i know:</p>
         <div className="flex h-fit w-fit flex-row flex-wrap gap-4">
           <TechBadge
             techName="Semantic HTML"
@@ -194,15 +194,18 @@ export default function Home() {
             techIconSrc="/logos/react.svg"
             techBgColor="rgba(130, 215, 247, 0.3)"
           />
-          <TechBadge techName="Go" techSubtitle="A programming language" 
-          techIconSrc='/logos/go.svg'
-          techBgColor='rgba(77, 169, 211, 0.3)'/>
+          <TechBadge
+            techName="Go"
+            techSubtitle="A programming language"
+            techIconSrc="/logos/go.svg"
+            techBgColor="rgba(77, 169, 211, 0.3)"
+          />
         </div>
       </div>
+
       {/* projects part */}
-      <p className="my-6 px-24 text-3xl" id="projects">
-        My projects:
-      </p>
+      <div id="projects" className="h-16"></div>
+      <p className="my-6 px-24 text-3xl">My projects:</p>
       <div className="flex h-fit w-fit flex-row flex-wrap gap-4 px-24">
         <ProjectCard
           projectName="Kheti"

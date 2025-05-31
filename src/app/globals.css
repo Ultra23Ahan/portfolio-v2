@@ -127,7 +127,9 @@ body {
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
-.hello{ color: rgb(77, 169, 211)}
+.hello {
+  color: rgb(77, 169, 211);
+}
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -168,5 +170,22 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+@theme inline {
+  --animate-meteor-effect: meteor 10s linear infinite;
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(215deg) translateX(0);
+      opacity: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(215deg) translateX(-800px);
+      opacity: 0;
+    }
   }
 }
